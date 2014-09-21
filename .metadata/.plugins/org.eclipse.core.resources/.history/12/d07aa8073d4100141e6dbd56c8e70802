@@ -1,0 +1,13 @@
+package com.estimote.examples.demos;
+
+public class InvInfo(String name, String iD, boolean equipped) {
+
+	this.name = name;
+	this.iD = iD;
+	this.equipped = equipped;
+		
+		
+		
+	}
+	
+}

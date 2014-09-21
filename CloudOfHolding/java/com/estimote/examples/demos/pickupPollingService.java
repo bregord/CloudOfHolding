@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.util.Log;
 
 public class pickupPollingService extends Service {
 
@@ -25,40 +26,33 @@ public class pickupPollingService extends Service {
 	public HashMap<String,String> inventory;
 	
 	
-	public void onCreate(Bundle savedInstanceState){
-	
-	try {
-		beaconManager.startRanging(region);
-		beaconManager.setRangingListener(listener);
-		
-		listener.onBeaconsDiscovered(region, beacons);
-		
-		
-		
-		
-	} catch (RemoteException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	} 
-	
-	
-	
+	public void onCreate(Bundle savedInstanceState) throws RemoteException{
 
 	}
 	
-	public void onStart(Bundle savedInstanceState){
-	
+	public void onStart(Bundle savedInstanceState) throws RemoteException{
 		
+
+		try {
+			beaconManager.startRanging(region);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		beaconManager.setRangingListener(listener);
+				
+		listener.onBeaconsDiscovered(region, beacons);
+
+
 	}
 
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		
 		intent.getExtras();
 		
-		
-		return startId;
+	
 	    
-		
+		return startId;
 		
 	}
 	

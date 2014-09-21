@@ -12,9 +12,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
+
 import com.estimote.sdk.Beacon;
 import com.estimote.sdk.BeaconManager;
 import com.estimote.sdk.Region;
+import com.estimote.sdk.Utils;
 import com.estimote.sdk.utils.L;
 
 import java.util.Collections;
@@ -28,6 +30,9 @@ import java.util.List;
  */
 public class ListBeaconsActivity extends Activity {
 
+	//Need UUID, distance, and whether or not we have seen it before.
+	
+	
   private static final String TAG = ListBeaconsActivity.class.getSimpleName();
 
   public static final String EXTRAS_TARGET_ACTIVITY = "extrasTargetActivity";
@@ -47,10 +52,7 @@ public class ListBeaconsActivity extends Activity {
 
     // Configure device list.
     adapter = new LeDeviceListAdapter(this);
-    ListView list = (ListView) findViewById(R.id.device_list);
-    list.setAdapter(adapter);
-    list.setOnItemClickListener(createOnItemClickListener());
-
+   
     // Configure verbose debug logging.
     L.enableDebugLogging(true);
 
@@ -174,5 +176,19 @@ public class ListBeaconsActivity extends Activity {
       }
     };
   }
+  
+  public double getAccuracy(Beacon beacon){
+	  
+	  return Utils.computeAccuracy(beacon);
+	  
+  }
+  
+  public String getUUID(Beacon beacon){
+	  
+	  return beacon.getProximityUUID();
+	  
+  }
+  
+  
 
 }

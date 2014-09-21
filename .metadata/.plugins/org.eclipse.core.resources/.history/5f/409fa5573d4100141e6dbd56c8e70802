@@ -1,0 +1,17 @@
+package com.estimote.examples.demos;
+
+import android.util.EventLogTags.Description;
+
+public class InvInfo(String iD, String itemName, String urlHi, Date timePickedUp, Date timeDropped, String Description ,boolean equipped) {
+	this.iD =iD;
+	this.itemName = itemName;
+	this.urlHi = urlHi;
+	this.timePickedUp = timePickedUp;
+	this.timeDropped = timeDropped;
+	this.Description = Description;
+	this.equipped = equipped;
+	
+		
+	}
+	
+}
