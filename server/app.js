@@ -1,6 +1,11 @@
-var Collectible = require('./routes/collectible');
-var collectible = new Collectible(process.env.CUSTOMCONNSTR_MONGOLAB_URI);
 var express = require('express');
+var mongoose = require('mongoose');  
+var connectionString = 'mongodb://heroku_app29826080:rde22c822m941cvrouqqom2qv3@ds039020.mongolab.com:39020/heroku_app29826080';
+
+var CollectibleList = require('./routes/collectible');
+var collectibleList = new CollectibleList(connectionString);
+
+
 var path = require('path');
 var favicon = require('static-favicon');
 var logger = require('morgan');
@@ -23,6 +28,10 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.get('/', collectibleList.showCollectibles.bind(collectibleList));
+app.post('/addCollectible', collectibleList.addCollectible.bind(collectibleList));
+app.post('/toggleCollectibleEquipped', collectibleList.toggleCollectibleEquipped.bind(collectibleList));
+
 app.use('/', routes);
 app.use('/users', users);
 
@@ -32,11 +41,6 @@ app.use(function(req, res, next) {
     err.status = 404;
     next(err);
 });
-
-//endpoints
-app.get('/', collectible.showCollectibles.bind(collectible));
-app.post('/addCollectible', collectible.addCollectible.bind(collectible));
-app.post('/toggleCollectibleEquipped', collectible.toggleCollectibleEquipped.bind(collectible));
 
 /// error handlers
 

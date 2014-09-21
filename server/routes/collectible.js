@@ -1,5 +1,5 @@
-var mongoose = require('mongoose')
-  , collectible = require('../models/collectible.js');
+var mongoose = require('mongoose');
+var collectible = require('../models/collectible.js');
 
 module.exports = CollectibleList;
 
@@ -10,26 +10,25 @@ function CollectibleList(connection) {
 CollectibleList.prototype = {
   showCollectibles: function(req, res) {
     collectible.find({equipped: true}, function foundTasks(err, collectibles) {
-      res.render('index',{title: 'My Collectibles', collectibles: collectibles})
+      res.json(collectibles);
     });
   },
 
   addCollectible: function(req,res) {
-    var collectible = req.body.collectible;
-    newCollectible = new collectible();
-    newCollectible.itemName = collectible.name || '';
-    newCollectible.urlHigh = collectible.urlHigh || '';
-    newCollectible.urlPebble = collectible.urlPebble || '';
-    newCollectible.timePickedUp = collectible.timePickedUp || (new Date());
-    newCollectible.timeDropped = collectible.timeDropped || (new Date());
-    newCollectible.description = collectible.description || '';
-    newCollectible.equipped = collectible.equipped || false;
+    var tempCollectible = req.body.collectible;
+    var newCollectible = new collectible();
+    newCollectible.itemName = tempCollectible.name || '';
+    newCollectible.urlHigh = tempCollectible.urlHigh || '';
+    newCollectible.urlPebble = tempCollectible.urlPebble || '';
+    newCollectible.timePickedUp = tempCollectible.timePickedUp || (new Date());
+    newCollectible.timeDropped = tempCollectible.timeDropped || (new Date());
+    newCollectible.description = tempCollectible.description || '';
+    newCollectible.equipped = tempCollectible.equipped || false;
     newCollectible.save(function savedCollectible(err){
       if(err) {
         throw err;
       }
     });
-    res.redirect('/');
   },
 
   toggleCollectibleEquipped: function(req,res) {
@@ -42,6 +41,5 @@ CollectibleList.prototype = {
       }
       collec.update( {equipped: !this.equipped} );
     });
-    res.redirect('/');
   }
 }
