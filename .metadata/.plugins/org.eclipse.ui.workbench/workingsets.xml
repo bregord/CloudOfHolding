@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workingSetManager>
+<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1411290757729_1" label="pebble-android-sdk-master" name="pebble-android-sdk-master">
+<item elementID="=pebble-android-sdk-master" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1411224465035_0" label="Window Working Set" name="Aggregate for window 1411222783049"/>
 </workingSetManager>

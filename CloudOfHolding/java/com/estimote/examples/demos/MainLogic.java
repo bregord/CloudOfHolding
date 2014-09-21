@@ -28,10 +28,13 @@ import com.estimote.sdk.utils.L;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;
+import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.app.Service;
 import android.bluetooth.BluetoothAdapter;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.*;
 import android.util.Log;
@@ -41,14 +44,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
-
-
-
-
-
-
-
-
 
 
 public class MainLogic extends Activity{
@@ -66,6 +61,11 @@ public class MainLogic extends Activity{
 	  
 	  ArrayList<InvInfo> inventoryData = new ArrayList<InvInfo>();
 	  
+	  InvInfo entry1 = new InvInfo("E1:DF:62:FE:C5:79","Wallet",null,null,null,null, true);
+	  InvInfo entry2 = new InvInfo("F1:EC:36:0F:0F:05","Keys",null,null,null,null, true);
+	  InvInfo entry3 = new InvInfo("D9:86:3E:79:95:EF9","Food",null,null,null,null, true);
+	  
+	 
 	  
 	  
 	  public void checkForItems(List<Beacon> beacons){
@@ -88,37 +88,11 @@ public class MainLogic extends Activity{
 		  
 	  
 	  
-	  public void fromServer() throws JSONException{
-		  DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-		  HttpPost httppost = new HttpPost("http://hackpackserver.azurewebsites.net/");
-		  // Depends on your web service
-		  httppost.setHeader("Content-type", "application/json");
-
-		  InputStream inputStream = null;
-		  String result = null;
-		  try {
-		      HttpResponse response = httpclient.execute(httppost);           
-		      HttpEntity entity = response.getEntity();
-
-		      inputStream = entity.getContent();
-		      // json is UTF-8 by default
-		      BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"), 8);
-		      StringBuilder sb = new StringBuilder();
-
-		      String line = null;
-		      while ((line = reader.readLine()) != null)
-		      {
-		          sb.append(line + "\n");
-		      }
-		      result = sb.toString();
-		  } catch (Exception e) { 
-		      // Oops
-		  }
-		  finally {
-		      try{if(inputStream != null)inputStream.close();}catch(Exception squish){}
-		  }
+	  
+	  
+	  
+	  public void toServer(){
 		  
-		  JSONObject jObject = new JSONObject(result);
 		  
 	  }
 	  
@@ -128,8 +102,14 @@ public class MainLogic extends Activity{
 			  for(InvInfo info:  inventoryData) { 
 			  
 				  if(Utils.computeAccuracy(b) > 2 && info.getID()== b.getProximityUUID()) {
-				  //Tell user it has dropped from their inventory
-				  System.out.println("FELL OUT OF YOUR INV");
+				  
+
+					  new AlertDialog.Builder(this)
+					  .setTitle("Item has fallen out of inventory")
+					  .setPositiveButton(android.R.string.yes,  new DialogInterface.OnClickListener() {
+					  public void onClick(DialogInterface dialog, int which){
+					  }
+					  }).setIcon(android.R.drawable.ic_dialog_alert).show();
 			  
 				  }
 			  
@@ -142,6 +122,12 @@ public class MainLogic extends Activity{
 
 	  @Override
 	  protected void onCreate(Bundle savedInstanceState) {
+		  
+		  inventoryData.add(entry1);
+		  inventoryData.add(entry2);
+		  inventoryData.add(entry3);
+		  
+		  
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.main);
 	    getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -283,10 +269,5 @@ public class MainLogic extends Activity{
 	    };
 	  }
 	
-	
-	  
-	  
-	  
-
 }
 

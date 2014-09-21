@@ -7,5 +7,6 @@
 	<classpathentry kind="src" path="java"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry exported="true" kind="lib" path="/Users/brendan/Desktop/Android-SDK-master/EstimoteSDK/estimote-sdk-preview.jar"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/pebble-android-sdk-master"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
