@@ -30,13 +30,6 @@ import android.widget.Toast;
 
 
 
-
-
-
-
-
-
-
 public class MainLogic extends Activity{
 
 	 private static final String TAG = ListBeaconsActivity.class.getSimpleName();
@@ -61,7 +54,6 @@ public class MainLogic extends Activity{
 			for(InvInfo info:  inventoryData) { 
 			  if(Utils.computeAccuracy(b) < 0.5 && info.getID() == b.getProximityUUID()) {
 				  
-				  //If it is unequipped, but still in our inventory, there is a fragment that allows you to reequip it.
 				  return; 
 			  
 			  } 
@@ -83,9 +75,7 @@ public class MainLogic extends Activity{
 				  if(Utils.computeAccuracy(b) > 2 && info.getID()== b.getProximityUUID()) {
 				  //Tell user it has dropped from their inventory
 				  System.out.println("FELL OUT OF YOUR INV");
-			  
-				  }
-			  
+			  }
 			  }
 		  }
 		  }

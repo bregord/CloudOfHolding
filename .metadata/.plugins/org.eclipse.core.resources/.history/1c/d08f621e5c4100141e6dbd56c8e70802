@@ -45,8 +45,8 @@ public class AllDemosActivity extends Activity {
   findViewById(R.id.test_demo_button).setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        Intent intent = new Intent(AllDemosActivity.this, MainLogic.class);
-        intent.putExtra(ListBeaconsActivity.EXTRAS_TARGET_ACTIVITY, MainLogic.class.getName());
+        Intent intent = new Intent(AllDemosActivity.this, ActivityTest.class);
+        intent.putExtra(ListBeaconsActivity.EXTRAS_TARGET_ACTIVITY, ActivityTest.class.getName());
         startActivity(intent);
       }
     });

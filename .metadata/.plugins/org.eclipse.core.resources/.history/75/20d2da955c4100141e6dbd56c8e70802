@@ -35,7 +35,7 @@
         android:screenOrientation="portrait"/>
     
     <activity
-        android:name="com.estimote.examples.demos.MainLogic"
+        android:name="com.estimote.examples.demos.ActivityTest"
         android:label="Test of Activity"
         android:screenOrientation="portrait"/>
 

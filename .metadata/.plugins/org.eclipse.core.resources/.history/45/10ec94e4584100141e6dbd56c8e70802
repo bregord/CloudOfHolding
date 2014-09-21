@@ -30,13 +30,6 @@ import android.widget.Toast;
 
 
 
-
-
-
-
-
-
-
 public class MainLogic extends Activity{
 
 	 private static final String TAG = ListBeaconsActivity.class.getSimpleName();
@@ -61,7 +54,6 @@ public class MainLogic extends Activity{
 			for(InvInfo info:  inventoryData) { 
 			  if(Utils.computeAccuracy(b) < 0.5 && info.getID() == b.getProximityUUID()) {
 				  
-				  //If it is unequipped, but still in our inventory, there is a fragment that allows you to reequip it.
 				  return; 
 			  
 			  } 
@@ -83,9 +75,7 @@ public class MainLogic extends Activity{
 				  if(Utils.computeAccuracy(b) > 2 && info.getID()== b.getProximityUUID()) {
 				  //Tell user it has dropped from their inventory
 				  System.out.println("FELL OUT OF YOUR INV");
-			  
-				  }
-			  
+			  }
 			  }
 		  }
 		  }
@@ -210,7 +200,7 @@ public class MainLogic extends Activity{
 	        try {
 	          beaconManager.startRanging(ALL_ESTIMOTE_BEACONS_REGION);
 	        } catch (RemoteException e) {
-	          Toast.makeText(MainLogic.this, "Cannot start ranging, something terrible happened",
+	          Toast.makeText(ActivityTest.this, "Cannot start ranging, something terrible happened",
 	              Toast.LENGTH_LONG).show();
 	          Log.e(TAG, "Cannot start ranging", e);
 	        }
@@ -225,7 +215,7 @@ public class MainLogic extends Activity{
 	        if (getIntent().getStringExtra(EXTRAS_TARGET_ACTIVITY) != null) {
 	          try {
 	            Class<?> clazz = Class.forName(getIntent().getStringExtra(EXTRAS_TARGET_ACTIVITY));
-	            Intent intent = new Intent(MainLogic.this, clazz);
+	            Intent intent = new Intent(ActivityTest.this, clazz);
 	            intent.putExtra(EXTRAS_BEACON, adapter.getItem(position));
 	            startActivity(intent);
 	          } catch (ClassNotFoundException e) {
