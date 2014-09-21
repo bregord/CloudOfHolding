@@ -42,19 +42,6 @@ public class pickupPollingService extends Service {
 	}
 	
 	public void onStart(Bundle savedInstanceState) throws RemoteException{
-		
-
-		try {
-			beaconManager.startRanging(region);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		beaconManager.setRangingListener(listener);
-		
-		
-		listener.onBeaconsDiscovered(region, beacons);
-		Log.d("WORKING", " IT IS WORKING");
 
 	}
 
@@ -62,9 +49,18 @@ public class pickupPollingService extends Service {
 		
 		intent.getExtras();
 		
-	
-	    
+		
 		return startId;
+		
+beaconManager.startRanging(region);
+		
+		beaconManager.setRangingListener(listener);
+		
+		
+		listener.onBeaconsDiscovered(region, beacons);
+		Log.d("WORKING", " IT IS WORKING");
+	    
+		
 		
 	}
 	

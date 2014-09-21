@@ -26,45 +26,40 @@ public class pickupPollingService extends Service {
 	public HashMap<String,String> inventory;
 	
 	
-	public void onCreate(Bundle savedInstanceState) throws RemoteException{
+	public void onCreate(Bundle savedInstanceState){
 	
-	
+	try {
+		beaconManager.startRanging(region);
+		beaconManager.setRangingListener(listener);
 		
-	
+		listener.onBeaconsDiscovered(region, beacons);
 		
 		
 		
-	
+		
+	} catch (RemoteException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} 
 	
 	
 	
 
 	}
 	
-	public void onStart(Bundle savedInstanceState) throws RemoteException{
+	public void onStart(Bundle savedInstanceState){
+	
 		
-
-		try {
-			beaconManager.startRanging(region);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		beaconManager.setRangingListener(listener);
-		
-		
-		listener.onBeaconsDiscovered(region, beacons);
-		Log.d("WORKING", " IT IS WORKING");
-
 	}
 
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		
 		intent.getExtras();
 		
-	
-	    
+		
 		return startId;
+	    
+		
 		
 	}
 	
@@ -77,8 +72,7 @@ public class pickupPollingService extends Service {
 			if(range < 0.5 && !inventory.containsValue(b.getProximityUUID()) ){
 				//THEN IT NEEDS TO BE ADDED TO 
 				
-				
-				  
+				  Log.d("WORKING", " IT IS WORKING");
 				
 				System.out.println("IT WORKS!!!!");
 			}

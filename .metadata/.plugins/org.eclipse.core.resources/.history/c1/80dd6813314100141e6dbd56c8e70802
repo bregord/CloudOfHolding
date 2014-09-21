@@ -8,8 +8,6 @@ import com.estimote.sdk.Region;
 import com.estimote.sdk.Utils;
 
 import android.app.Activity;
-import android.app.ActivityManager;
-import android.app.ActivityManager.RunningServiceInfo;
 import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Context;
@@ -31,8 +29,10 @@ public class ActivityTest extends Activity{
 	  private Region lostRegion;
 	  
 	  public HashMap UUIDs = new HashMap();
-	 
 	  
+	  
+	   
+	
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		
@@ -40,25 +40,44 @@ public class ActivityTest extends Activity{
 		setContentView(R.layout.main);
 		    getActionBar().setDisplayHomeAsUpEnabled(true);
 		    
-		    
-		    
-		    
-		    Intent i= new Intent(this, pickupPollingService.class);
-		 // potentially add data to the intent
-		 //i.putExtra("KEY1", "Value to be used by the service");
-		 this.startService(i); 
-		 
+		   Log.d("WORKING", " IT IS WORKING");
+		
 		   
-		   //startService(new Intent(this, pickupPollingService.class));
+		/*    
+
+		    Beacon beacon = getIntent().getParcelableExtra(ListBeaconsActivity.EXTRAS_BEACON);
+		    
+		    findingRegion = new Region("regionId", beacon.getProximityUUID(), beacon.getMajor(), beacon.getMinor());
+		    lostRegion = new Region("regionId", beacon.getProximityUUID(), beacon.getMajor(), beacon.getMinor());
 		   
-			System.out.println(isMyServiceRunning(pickupPollingService.class));
-			
+		    notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+		    beaconManager = new BeaconManager(this);
+
+		   
+		    
+		    double range = Utils.computeAccuracy(beacon);
+		    while(true){
+		    
+		    	if(range < 0.5){
+		    	//This is where we prompt to see if we want to pick it up.
+		    	//promptPickUp
+		    	
+		    	
+		    } else if (range > 2) {
+		    	//in posession?
+		    
+		    }
+		    
+		    }
+		    
+		    */
 		    
 	}
 	
 	void onStart(Bundle savedInstanceState){
 		
-
+		
+		
 		
 	}
 	
@@ -69,12 +88,6 @@ public class ActivityTest extends Activity{
 	void onDestroy(Bundle savedInstanceState){}
 	
 
-	
-	
-	
-	
-	
-	
 
 
 @Override
@@ -85,18 +98,5 @@ public boolean onOptionsItemSelected(MenuItem item) {
   }
   return super.onOptionsItemSelected(item);
 }
-
-private boolean isMyServiceRunning(Class<?> serviceClass) {
-    ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-    for (RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
-        if (serviceClass.getName().equals(service.service.getClassName())) {
-            return true;
-        }
-    }
-    return false;
-}
-
-
-
 }
 

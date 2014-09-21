@@ -51,14 +51,14 @@ public class ActivityTest extends Activity{
 		   
 		   //startService(new Intent(this, pickupPollingService.class));
 		   
-			System.out.println(isMyServiceRunning(pickupPollingService.class));
-			
+	
 		    
 	}
 	
 	void onStart(Bundle savedInstanceState){
 		
-
+		isMyServiceRunning(pickupPollingService.class);
+		
 		
 	}
 	
@@ -69,12 +69,6 @@ public class ActivityTest extends Activity{
 	void onDestroy(Bundle savedInstanceState){}
 	
 
-	
-	
-	
-	
-	
-	
 
 
 @Override
