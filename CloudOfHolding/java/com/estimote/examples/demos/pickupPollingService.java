@@ -27,17 +27,6 @@ public class pickupPollingService extends Service {
 	
 	
 	public void onCreate(Bundle savedInstanceState) throws RemoteException{
-	
-	
-		
-	
-		
-		
-		
-	
-	
-	
-	
 
 	}
 	
@@ -51,10 +40,9 @@ public class pickupPollingService extends Service {
 			e.printStackTrace();
 		}
 		beaconManager.setRangingListener(listener);
-		
-		
+				
 		listener.onBeaconsDiscovered(region, beacons);
-		Log.d("WORKING", " IT IS WORKING");
+
 
 	}
 
@@ -76,9 +64,6 @@ public class pickupPollingService extends Service {
 			double range = Utils.computeAccuracy(b);
 			if(range < 0.5 && !inventory.containsValue(b.getProximityUUID()) ){
 				//THEN IT NEEDS TO BE ADDED TO 
-				
-				
-				  
 				
 				System.out.println("IT WORKS!!!!");
 			}
