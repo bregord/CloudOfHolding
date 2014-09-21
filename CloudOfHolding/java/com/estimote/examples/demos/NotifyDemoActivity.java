@@ -37,6 +37,8 @@ public class NotifyDemoActivity extends Activity {
   private BeaconManager beaconManager;
   private NotificationManager notificationManager;
   private Region region;
+  
+  public boolean inAreaOfItems;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -51,17 +53,22 @@ public class NotifyDemoActivity extends Activity {
 
     // Default values are 5s of scanning and 25s of waiting time to save CPU cycles.
     // In order for this demo to be more responsive and immediate we lower down those values.
-    beaconManager.setBackgroundScanPeriod(TimeUnit.SECONDS.toMillis(1), 0);
+    beaconManager.setBackgroundScanPeriod(TimeUnit.SECONDS.toMillis(1), 1);
 
     beaconManager.setMonitoringListener(new MonitoringListener() {
       @Override
       public void onEnteredRegion(Region region, List<Beacon> beacons) {
-        postNotification("Entered region");
+        postNotification("There are items nearby");
+        
+        inAreaOfItems = true;
+        
       }
 
       @Override
       public void onExitedRegion(Region region) {
-        postNotification("Exited region");
+        postNotification("There are no items nearby.");
+        
+        inAreaOfItems = false;
       }
     });
   }

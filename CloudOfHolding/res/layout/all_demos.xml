@@ -22,5 +22,20 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:text="Change Beacon's Minor Demo"/>
+  
+  <Button
+      android:id="@+id/test_demo_button"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="TestButton"/>
+  
+  
+   <Button
+      android:id="@+id/simulateButton"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="simulateButton"
+      android:onClick="dialogFragmentStarter"/>
+  
 
 </LinearLayout>

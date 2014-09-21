@@ -42,5 +42,13 @@ public class AllDemosActivity extends Activity {
         startActivity(intent);
       }
     });
+  findViewById(R.id.test_demo_button).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent intent = new Intent(AllDemosActivity.this, ActivityTest.class);
+        intent.putExtra(ListBeaconsActivity.EXTRAS_TARGET_ACTIVITY, ActivityTest.class.getName());
+        startActivity(intent);
+      }
+    });
   }
 }
