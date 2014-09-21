@@ -1,0 +1,28 @@
+package com.estimote.examples.demos;
+
+import android.app.Activity;
+import android.app.Fragment;
+import android.os.Bundle;
+import android.util.Log.*;
+
+public class FragmentDialogTest extends Fragment{
+
+	
+	public void onAttach(Activity activity) { 
+		super.onAttach(activity); 
+		Log.d(“Fragment 1”, “onAttach”);
+	}
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) { 
+		
+		
+		super.onCreate(savedInstanceState); 
+		
+		Log.d(“Fragment 1”, “onCreate”);
+	
+	}
+
+	
+	
+}

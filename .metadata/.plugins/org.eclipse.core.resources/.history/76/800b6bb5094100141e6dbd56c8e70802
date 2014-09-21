@@ -1,0 +1,30 @@
+package com.estimote.examples.demos;
+
+import android.app.Activity;
+import android.os.*;
+
+
+
+public class ActivityTest extends Activity{
+
+	protected void onCreate(Bundle savedInstanceState){
+		 setContentView(R.layout.notify_demo);
+		    getActionBar().setDisplayHomeAsUpEnabled(true);
+		
+		
+	}
+	
+	void onStart(Bundle savedInstanceState){
+		
+		
+		
+		
+	}
+	
+
+	void onPause(Bundle savedInstanceState){}
+	
+
+	void onDestroy(Bundle savedInstanceState){}
+	
+}
