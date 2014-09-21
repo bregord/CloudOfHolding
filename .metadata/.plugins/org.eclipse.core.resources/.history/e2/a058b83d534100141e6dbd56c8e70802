@@ -30,7 +30,7 @@ import android.widget.Toast;
 
 
 
-public class MainLogic extends Activity{
+public class ActivityTest extends Activity{
 
 	 private static final String TAG = ListBeaconsActivity.class.getSimpleName();
 
