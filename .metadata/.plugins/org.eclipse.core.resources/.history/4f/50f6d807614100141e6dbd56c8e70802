@@ -16,8 +16,6 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.BasicHttpParams;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import com.estimote.sdk.Beacon;
 import com.estimote.sdk.BeaconManager;
@@ -88,7 +86,7 @@ public class MainLogic extends Activity{
 		  
 	  
 	  
-	  public void fromServer() throws JSONException{
+	  public void fromServer(){
 		  DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
 		  HttpPost httppost = new HttpPost("http://hackpackserver.azurewebsites.net/");
 		  // Depends on your web service
@@ -118,7 +116,7 @@ public class MainLogic extends Activity{
 		      try{if(inputStream != null)inputStream.close();}catch(Exception squish){}
 		  }
 		  
-		  JSONObject jObject = new JSONObject(result);
+		  
 		  
 	  }
 	  
